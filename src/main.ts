@@ -15,6 +15,13 @@ WA.onInit().then(() => {
         const today = new Date();
         const time = today.getHours() + ":" + today.getMinutes();
         currentPopup = WA.ui.openPopup("clockPopup", "It's " + time, []);
+
+        WA.ui.notification({
+            title: 'New Chat Message',
+            body: 'TEST AJA LOH',
+            icon: 'path/to/icon.png', // Optional: Add an icon for the notification
+            timeout: 5000 // Optional: Set a timeout for the notification in milliseconds
+        });
     })
 
     WA.room.area.onLeave('clock').subscribe(closePopup)
