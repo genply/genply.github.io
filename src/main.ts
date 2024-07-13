@@ -57,11 +57,11 @@ function showNotification(title: string, options?: NotificationOptions) {
 
 // Function to handle incoming events
 function handleIncomingEvent(event:any) {
-    console.log(`Event RECEIVED: ${event.sender}`);
+    console.log(`Event RECEIVED: ${event.type}`);
 
    // if (event.type === "discussionRequest") {
         showNotification("WorkAdventure", {
-            body: `${event.sender} wants to discuss with you!`,
+            body: `${{event.type}} TEST NOTIFICATION!`,
             icon: "path/to/icon.png"
         });
     //}
