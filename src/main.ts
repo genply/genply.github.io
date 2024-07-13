@@ -15,17 +15,20 @@ WA.onInit().then(() => {
         const today = new Date();
         const time = today.getHours() + ":" + today.getMinutes();
         currentPopup = WA.ui.openPopup("clockPopup", "It's " + time, []);
-
-        WA.ui.notification({
-            title: 'New Chat Message',
-            body: 'TEST AJA LOH',
-            icon: 'path/to/icon.png', // Optional: Add an icon for the notification
-            timeout: 5000 // Optional: Set a timeout for the notification in milliseconds
-        });
     })
 
     WA.room.area.onLeave('clock').subscribe(closePopup)
 
+    // Request notification permission on page load
+if (Notification.permission === "default") {
+    Notification.requestPermission().then(permission => {
+        if (permission === "granted") {
+            console.log("Notification permission granted.");
+        } else {
+            console.log("Notification permission denied.");
+        }
+    });
+}
     // The line below bootstraps the Scripting API Extra library that adds a number of advanced properties/features to WorkAdventure
     bootstrapExtra().then(() => {
         console.log('Scripting API Extra ready');
@@ -39,5 +42,32 @@ function closePopup(){
         currentPopup = undefined;
     }
 }
+
+
+
+
+// Function to show a notification
+function showNotification(title, options) {
+    if (Notification.permission === "granted") {
+        new Notification(title, options);
+    } else {
+        console.log("Notification permission not granted.");
+    }
+}
+
+// Function to handle incoming events
+function handleIncomingEvent(event) {
+    if (event.type === "discussionRequest") {
+        showNotification("WorkAdventure", {
+            body: `${event.sender} wants to discuss with you!`,
+            icon: "path/to/icon.png"
+        });
+    }
+}
+
+// Example event listener
+window.addEventListener("message", (event) => {
+    handleIncomingEvent(event.data);
+});
 
 export {};
