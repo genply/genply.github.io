@@ -47,7 +47,7 @@ function closePopup(){
 
 
 // Function to show a notification
-function showNotification(title, options) {
+function showNotification(title: string, options?: NotificationOptions) {
     if (Notification.permission === "granted") {
         new Notification(title, options);
     } else {
@@ -56,7 +56,7 @@ function showNotification(title, options) {
 }
 
 // Function to handle incoming events
-function handleIncomingEvent(event) {
+function handleIncomingEvent(event:any) {
     if (event.type === "discussionRequest") {
         showNotification("WorkAdventure", {
             body: `${event.sender} wants to discuss with you!`,
