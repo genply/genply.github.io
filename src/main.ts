@@ -61,7 +61,7 @@ function handleIncomingEvent(event:any) {
 
    // if (event.type === "discussionRequest") {
         showNotification("WorkAdventure", {
-            body: `${{event.type}} TEST NOTIFICATION!`,
+            body: `${event.type} TEST NOTIFICATION!`,
             icon: "path/to/icon.png"
         });
     //}
