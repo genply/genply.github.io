@@ -20,7 +20,7 @@ WA.onInit().then(() => {
     WA.room.area.onLeave('clock').subscribe(closePopup)
 
     // Request notification permission on page load
-if (Notification.permission === "default") {
+//if (Notification.permission === "default") {
     Notification.requestPermission().then(permission => {
         if (permission === "granted") {
             console.log("Notification permission granted.");
@@ -28,7 +28,7 @@ if (Notification.permission === "default") {
             console.log("Notification permission denied.");
         }
     });
-}
+//}
     // The line below bootstraps the Scripting API Extra library that adds a number of advanced properties/features to WorkAdventure
     bootstrapExtra().then(() => {
         console.log('Scripting API Extra ready');
